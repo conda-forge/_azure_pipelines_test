@@ -13,7 +13,7 @@ jobs:
   steps:
   - script: env
     displayName: 'Print env variables'
-  - script: echo "##vso[task.setvariable variable=NEED_CUDA;isOutput=true]1"
+  - script: echo "##vso[task.setvariable variable=NEED_CUDA;isOutput=true]0"
     name: Outputs
 
 - job: linux_cuda9
