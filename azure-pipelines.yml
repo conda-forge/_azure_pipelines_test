@@ -20,7 +20,7 @@ jobs:
   dependsOn: linux
   pool:
     vmImage: 'Ubuntu-16.04'
-  condition: eq(dependencies.linux.outputs['NEED_CUDA'], 'Yes')
+  condition: eq(dependencies.linux.outputs['NEED_CUDA'], '1')
   steps:
   - script: env
     displayName: 'Print env variables'
