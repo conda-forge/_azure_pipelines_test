@@ -16,7 +16,7 @@ jobs:
   - script: export NEED_CUDA=1
     name: NEED_CUDA
 
-- job: linux-cuda9
+- job: linux_cuda9
   dependsOn: linux
   pool:
     vmImage: 'Ubuntu-16.04'
