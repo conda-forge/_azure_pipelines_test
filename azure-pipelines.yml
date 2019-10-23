@@ -13,14 +13,14 @@ jobs:
   steps:
   - script: env
     displayName: 'Print env variables'
-  - script: export NEED_CUDA=1
-    name: NEED_CUDA
+  - script: echo "##vso[task.setvariable variable=NEED_CUDA;isOutput=true]1"
+    name: Outputs
 
 - job: linux_cuda9
   dependsOn: linux
   pool:
     vmImage: 'Ubuntu-16.04'
-  condition: eq(dependencies.linux.outputs['NEED_CUDA'], '1')
+  condition: eq(dependencies.linux.outputs['Outputs.NEED_CUDA'], '1')
   steps:
   - script: env
     displayName: 'Print env variables'
