@@ -13,23 +13,17 @@ jobs:
   steps:
   - script: env
     displayName: 'Print env variables'
+  - script: export NEED_CUDA=1
+    name: NEED_CUDA
 
-  - script: lscpu
-    displayName: 'Run lscpu'
-
-  - script: echo Hello, world!
-    displayName: 'Run a one-line script'
-  
-  - script: lscpu
-    displayName: cpu info
-    
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      python3 ./test_secret.py
-      env
-    displayName: 'Run a multi-line script'
-    env: 
-      MYSECRET: $(pipeline-secret)
+- job: linux-cuda9
+  dependson: linux
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  condition: eq(dependencies.linux.outputs['NEED_CUDA'], 'Yes')
+  steps:
+  - script: env
+    displayName: 'Print env variables'
 
 - job: osx
   pool:
