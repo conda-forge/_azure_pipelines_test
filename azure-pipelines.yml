@@ -72,9 +72,13 @@ jobs:
     displayName: cpu info
     
   - script: |
+     cd "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild"
+     dir /s /b
+    
+  - script: |
       call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x86_x64 -vcvars_ver=14.0
       where MSBuild.exe
-      MSBuil.exe --version
+      MSBuild.exe --version
 
   - script: |
       echo Add other tasks to build, test, and deploy your project.
