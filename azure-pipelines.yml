@@ -7,62 +7,6 @@ trigger:
 - master
 
 jobs:
-- job: linux
-  pool:
-    vmImage: 'Ubuntu-16.04'
-  steps:
-  - script: env
-    displayName: 'Print env variables'
-
-  - script: lscpu
-    displayName: 'Run lscpu'
-
-  - script: echo Hello, world!
-    displayName: 'Run a one-line script'
-  
-  - script: lscpu
-    displayName: cpu info
-    
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      python3 ./test_secret.py
-      env
-    displayName: 'Run a multi-line script'
-    env: 
-      MYSECRET: $(pipeline-secret)
-
-- job: osx
-  pool:
-    vmImage: 'macOS-10.13'
-  steps:
-  - script: sysctl -a 
-    displayName: 'Run a one-line script'
-
-- job: osx_conda_forge_internal
-  pool:
-    name: 'conda-forge-internal-osx'
-  steps:
-  - script: sysctl -a 
-    displayName: 'Run a one-line script'
-
-- job: Vs2019_Server2019
-  pool:
-    name: Hosted Windows 2019 with VS2019
-  steps:
-  - script: WMIC CPU Get /Format:List
-    displayName: cpu info
-    
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      python ./test_secret.py
-    displayName: 'Run a multi-line script'
-    env: 
-      MYSECRET: $(pipeline-secret)
-  
-  - script: |
-      pip install winregistry
-      python ./test_registry.py
-    displayName: 'Fetch some registry keys'     
 
 - job: windows_vs2017_win2016
   pool:
@@ -72,8 +16,7 @@ jobs:
     displayName: cpu info
     
   - script: |
-     cd "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild"
-     dir /s /b
+     dir "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild" /s /b
     
   - script: |
       call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x86_x64 -vcvars_ver=14.0
@@ -95,44 +38,4 @@ jobs:
   - script:
       dir "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\"
     displayName: Dir some things C:\Program Files (x86)
-
-- job: windows_vs2015_win2012r2
-  pool:
-    vmImage: 'vs2015-win2012r2'
-  steps:
-  - script: SET
-    displayName: env variables
-
-  - script: WMIC CPU Get /Format:List
-    displayName: cpu info
-
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      python ./test_secret.py
-    displayName: 'Run a multi-line script'
-    env: 
-      MYSECRET: $(pipeline-secret)
-
-- job: aarch64_sudo_test
-  pool:
-    vmImage: 'Ubuntu-16.04'
-  steps:
-  - script: |
-      sudo pip install --upgrade pip
-      sudo pip install setuptools shyaml
-    displayName: Install dependencies
-  # configure qemu binfmt-misc running.  This allows us to run docker containers 
-  # embedded qemu-static
-  - script: |
-      docker run --rm --privileged multiarch/qemu-user-static:register
-      ls /proc/sys/fs/binfmt_misc/
-    displayName: Configure binfmt_misc
-  
-  - script: |
-      sudo apt-get install qemu binfmt-support qemu-user-static
-
-  - script: |
-      ./run_docker_build.sh
-    displayName: Run docker build
-    
   
