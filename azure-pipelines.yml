@@ -25,6 +25,14 @@ jobs:
   - script: lscpu
     displayName: cpu info
     
+  - script: ls -alh /opt/ghc
+    displayName: ghc info
+    
+  - script: |
+     rm -rf /opt/ghc
+     df -h
+ d  isplayName: Manage disk space (rm /opt/ghc)
+    
   - script: |
       echo Add other tasks to build, test, and deploy your project.
       python3 ./test_secret.py
