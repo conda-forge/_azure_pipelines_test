@@ -24,14 +24,18 @@ jobs:
   
   - script: lscpu
     displayName: cpu info
+
+  - script: df -h
+    displayName: df
     
   - script: ls -alh /opt/ghc
     displayName: ghc info
     
-  - script: |
-     rm -rf /opt/ghc
-     df -h
- d  isplayName: Manage disk space (rm /opt/ghc)
+  - script: rm -rf /opt/ghc
+    displayName: Manage disk space (rm /opt/ghc)
+    
+  - script: df -h
+    displayName: df
     
   - script: |
       echo Add other tasks to build, test, and deploy your project.
