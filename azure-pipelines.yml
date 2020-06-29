@@ -92,39 +92,11 @@ jobs:
   steps:
   - script: WMIC CPU Get /Format:List
     displayName: cpu info
-  - script: |
-      setlocal ENABLEDELAYEDEXPANSION
-      set CI=azure
-      python -c "import os;print(os.environ['PATH'])"
-      echo "123"
-      set "PATH=%PATH:C:\ProgramData\Chocolatey\bin;=%"
-      set "PATH=%PATH:C:\Program Files (x86)\sbt\bin;=%"
-      set "PATH=%PATH:C:\Rust\.cargo\bin;=%"
-      set "PATH=%PATH:C:\Program Files\Git\usr\bin;=%"
-      set "PATH=%PATH:C:\Program Files\Git\cmd;=%"
-      set "PATH=%PATH:C:\Program Files\Git\mingw64\bin;=%"
-      set "PATH=%PATH:C:\Program Files (x86)\Subversion\bin;=%"
-      set "PATH=%PATH:C:\Program Files\CMake\bin;=%"
-      set "PATH=%PATH:C:\Program Files\OpenSSL\bin;=%"
-      set "PATH=%PATH:C:\Strawberry\c\bin;=%"
-      set "PATH=%PATH:C:\Strawberry\perl\bin;=%"
-      set "PATH=%PATH:C:\Strawberry\perl\site\bin;=%"
-      set "PATH=%PATH:c:\tools\php;=%"
-      echo %PATH%
-      dir "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\\VC\Redist\MSVC\"
-      dir "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\lib\um\x64"
-      dir "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\lib\x64"
-      dir "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\ATLMFC\lib\x64"
-      dir "C:\Windows\System32\"
-      cd /d C:\Windows
-      dir /s "libssl.lib"
-      python -c "import os;print(os.environ['PATH'])"
-    displayName: cpu info
 
   - script: |
       C:\Miniconda\Scripts\conda.exe config --add channels conda-forge
       C:\Miniconda\Scripts\conda.exe create -n test conda python=3.6
-    displayName: 'Try with conda-forge'
+    displayName: 'Create conda-forge environment'
 
   - script: |
       C:\Miniconda\Scripts\conda.exe update -n test conda --yes
