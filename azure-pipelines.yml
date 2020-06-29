@@ -122,6 +122,16 @@ jobs:
     displayName: cpu info
 
   - script: |
+      C:\Miniconda\Scripts\conda.exe config --add channels conda-forge
+      C:\Miniconda\Scripts\conda.exe create -n test conda python=3.6
+    displayName: 'Try with conda-forge'
+
+  - script: |
+      C:\Miniconda\Scripts\conda.exe update -n test conda --yes
+      C:\Miniconda\Scripts\conda.exe install -n test python=3.6 conda-build conda conda-forge::conda-forge-ci-setup=3 pip --quiet --yes 
+    displayName: 'Try with conda-forge'
+    
+  - script: |
       echo Add other tasks to build, test, and deploy your project.
       python ./test_secret.py
     displayName: 'Run a multi-line script'
