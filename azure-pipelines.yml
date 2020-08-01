@@ -18,7 +18,7 @@ jobs:
       which clang
       which otool
       which ld
-      cat  /Applications/Xcode_11.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libSystem.B.tbd
+      cat  /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libSystem.B.tbd
       ls /Applications
     displayName: 'Run a multi-line script'
 
