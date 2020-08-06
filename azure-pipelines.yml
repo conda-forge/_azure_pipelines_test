@@ -25,4 +25,7 @@ jobs:
       xcode-select -p
     displayName: 'Run a multi-line script'
 
+  - publish: /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+    artifact: sdk_11
+
   
