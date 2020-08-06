@@ -24,9 +24,10 @@ jobs:
       ls /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/
       xcode-select -p
       echo $PWD
+      tar -czvf sdk.tar.gz /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
     displayName: 'Run a multi-line script'
 
-  - publish: /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+  - publish: sdk.tar.gz
     artifact: sdk_11
 
   
