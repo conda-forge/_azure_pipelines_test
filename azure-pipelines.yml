@@ -20,6 +20,7 @@ jobs:
       which ld
       cat  /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libSystem.B.tbd
       cat  /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/SDKSettings.json
+      ls /Applications/Xcode_12_beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
       ls /Applications
       ls /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/
       xcode-select -p
