@@ -18,6 +18,8 @@ jobs:
       which clang
       which otool
       which ld
+      ls /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs || true
+      ls /Applications/Xcode_12.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs || true
       cat  /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libSystem.B.tbd
       cat  /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/SDKSettings.json
       ls /Applications/Xcode_12_beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
