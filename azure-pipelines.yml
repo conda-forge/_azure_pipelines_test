@@ -12,6 +12,7 @@ jobs:
     vmImage: 'macOS-10.15'
   steps:
   - script: |
+      set -x
       ld -v
       otool --version
       clang --version
@@ -26,6 +27,6 @@ jobs:
       ls /Applications
       ls /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/
       xcode-select -p
-      echo $PWD
-      tar -czvf sdk.tar.gz /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+      #echo $PWD
+      #tar -czvf sdk.tar.gz /Applications/Xcode_12_beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
     displayName: 'Run a multi-line script'
