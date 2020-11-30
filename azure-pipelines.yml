@@ -11,6 +11,13 @@ jobs:
   pool:
     vmImage: 'windows-latest'
   steps:
-  - script: |
-        pip install ensureconda
-        ensureconda --micromamba --no-mamba --no-conda --no-conda-exe
+  - task: PythonScript@0
+        from urllib.request import urlretrieve
+        urlretrieve(
+          'https://micromamba.snakepit.net/api/micromamba/win-64/latest',
+          'micromamba.tar.bz2'
+        )
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: 'micromamba.tar.bz2'
+      cleanDestinationFolder: true
