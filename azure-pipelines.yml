@@ -12,6 +12,9 @@ jobs:
     vmImage: 'windows-latest'
   steps:
   - task: PythonScript@0
+    inputs:
+      scriptSource: 'inline'
+      script: |
         from urllib.request import urlretrieve
         urlretrieve(
           'https://micromamba.snakepit.net/api/micromamba/win-64/latest',
