@@ -30,7 +30,7 @@ jobs:
       mkdir C:\conda
       set "MAMBA_ROOT_PREFIX=C:\conda"
       set "CONDA_PREFIX=C:\conda"
-      Library\bin\micromamba.exe --yes install python=3.6 conda-build conda "conda-forge-ci-setup=3" pip -c conda-forge
+      Library\bin\micromamba.exe install --yes python=3.6 conda-build conda "conda-forge-ci-setup=3" pip -c conda-forge
       ECHO ##vso[task.prependpath]C:\conda\Scripts
     displayName: Install conda, conda-build and build tools
   - script: |
