@@ -24,3 +24,5 @@ jobs:
     inputs:
       archiveFilePatterns: 'micromamba.tar.bz2'
       cleanDestinationFolder: false
+  - script: |
+      dir
