@@ -25,4 +25,6 @@ jobs:
       archiveFilePatterns: 'micromamba.tar.bz2'
       cleanDestinationFolder: false
   - script: |
-      dir
+      set "MAMBA_ROOT_PREFIX=C:\conda"
+      set "CONDA_PREFIX=C:\conda"
+      Library\bin\micromamba.exe install python=3.6 conda-build conda "conda-forge-ci-setup=3" pip -c conda-forge
