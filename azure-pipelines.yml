@@ -12,6 +12,7 @@ jobs:
     vmImage: 'windows-latest'
   steps:
   - task: PythonScript@0
+    displayName: Download micromamba
     inputs:
       scriptSource: 'inline'
       script: |
@@ -21,10 +22,13 @@ jobs:
           'micromamba.tar.bz2'
         )
   - task: ExtractFiles@1
+    displayName: Extract micromamba
     inputs:
       archiveFilePatterns: 'micromamba.tar.bz2'
       cleanDestinationFolder: false
   - script: |
+      mkdir C:\conda
       set "MAMBA_ROOT_PREFIX=C:\conda"
       set "CONDA_PREFIX=C:\conda"
       Library\bin\micromamba.exe install python=3.6 conda-build conda "conda-forge-ci-setup=3" pip -c conda-forge
+    displayName: Install conda, conda-build and build tools
