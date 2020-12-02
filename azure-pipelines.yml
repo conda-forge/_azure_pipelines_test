@@ -18,7 +18,7 @@ jobs:
       script: |
         from urllib.request import urlretrieve
         urlretrieve(
-          'https://anaconda.org/conda-forge/conda-standalone/4.9.2/download/win-64/conda-standalone-4.9.2-h57928b3_2.tar.bz2',
+          'https://conda.anaconda.org/conda-forge/win-64/conda-standalone-4.9.2-h57928b3_2.tar.bz2',
           'conda-standalone.tar.bz2'
         )
   - task: ExtractFiles@1
