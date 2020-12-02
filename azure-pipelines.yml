@@ -12,25 +12,25 @@ jobs:
     vmImage: 'windows-latest'
   steps:
   - task: PythonScript@0
-    displayName: Download micromamba
+    displayName: Download conda-standalone
     inputs:
       scriptSource: 'inline'
       script: |
         from urllib.request import urlretrieve
         urlretrieve(
-          'https://micromamba.snakepit.net/api/micromamba/win-64/latest',
-          'micromamba.tar.bz2'
+          'https://anaconda.org/conda-forge/conda-standalone/4.9.2/download/win-64/conda-standalone-4.9.2-h57928b3_2.tar.bz2',
+          'conda-standalone.tar.bz2'
         )
   - task: ExtractFiles@1
-    displayName: Extract micromamba
+    displayName: Extract conda-standalone
     inputs:
-      archiveFilePatterns: 'micromamba.tar.bz2'
+      archiveFilePatterns: 'conda-standalone.tar.bz2'
       cleanDestinationFolder: false
   - script: |
       mkdir C:\conda
       set "MAMBA_ROOT_PREFIX=C:\conda"
       set "CONDA_PREFIX=C:\conda"
-      Library\bin\micromamba.exe install --yes python=3.6 conda-build conda "conda-forge-ci-setup=3" pip -c conda-forge -c defaults
+      conda-standalone\conda.exe install --yes python=3.6 conda-build conda "conda-forge-ci-setup=3" pip -c conda-forge -c defaults
       ECHO ##vso[task.prependpath]C:\conda\Scripts
     displayName: Install conda, conda-build and build tools
   - script: |
