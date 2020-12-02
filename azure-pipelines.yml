@@ -28,10 +28,8 @@ jobs:
       cleanDestinationFolder: false
   - script: |
       mkdir C:\conda
-      set "MAMBA_ROOT_PREFIX=C:\conda"
       set "CONDA_PREFIX=C:\conda"
-      dir
-      conda-standalone\conda.exe install --yes python=3.6 conda-build conda "conda-forge-ci-setup=3" pip -c conda-forge -c defaults
+      standalone_conda\conda.exe install --yes python=3.6 conda-build conda "conda-forge-ci-setup=3" pip -c conda-forge -c defaults
       ECHO ##vso[task.prependpath]C:\conda\Scripts
     displayName: Install conda, conda-build and build tools
   - script: |
