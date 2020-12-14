@@ -7,31 +7,34 @@ trigger:
 - master
 
 jobs:
-- job: win
+- job: linux
   pool:
-    vmImage: 'windows-latest'
+    vmImage: 'Ubuntu-16.04'
   steps:
-  - task: PythonScript@0
-    displayName: Download conda-standalone
-    inputs:
-      scriptSource: 'inline'
-      script: |
-        from urllib.request import urlretrieve
-        urlretrieve(
-          'https://conda.anaconda.org/conda-forge/win-64/conda-standalone-4.9.2-h57928b3_2.tar.bz2',
-          'conda-standalone.tar.bz2'
-        )
-  - task: ExtractFiles@1
-    displayName: Extract conda-standalone
-    inputs:
-      archiveFilePatterns: 'conda-standalone.tar.bz2'
-      cleanDestinationFolder: false
-  - script: |
-      mkdir C:\conda
-      set "CONDA_PREFIX=C:\conda"
-      standalone_conda\conda.exe install --yes python=3.6 conda-build conda "conda-forge-ci-setup=3" pip -c conda-forge -c defaults
-      ECHO ##vso[task.prependpath]C:\conda\Scripts
-    displayName: Install conda, conda-build and build tools
-  - script: |
-      call activate base
-      conda --version
+  - script: env
+    displayName: 'Print env variables'
+  - script: echo "##vso[task.setvariable variable=NEED_CUDA;isOutput=true]1"
+    name: ASDOutputs
+
+- job: linux_cuda9
+  dependsOn: linux
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  condition: eq(dependencies.linux.outputs['ASDOutputs.NEED_CUDA'], '1')
+  steps:
+  - script: env
+    displayName: 'Print env variables'
+  - script: sleep 100s
+    displayName: 'Sleep'
+
+- job: linux_cuda10
+  dependsOn: linux
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  condition: eq(dependencies.linux.outputs['ASDOutputs.NEED_CUDA'], '1')
+  steps:
+  - script: env
+    displayName: 'Print env variables'
+  - script: sleep 100s
+    displayName: 'Sleep'
+
