@@ -35,3 +35,4 @@ jobs:
   - script: |
       call activate base
       conda --version
+      dir C:\Windows\System32
